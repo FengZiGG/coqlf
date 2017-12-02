@@ -106,4 +106,4 @@ Proof.
 Qed.
 
 (* Briefly explain the difference between the tactics destruct and induction. *)
-(* When we use destruct to analyze cases we don't have hypothesis to re-use, unlike induction. *)
+(* When we use destruct to analyze cases, we don't have hypothesis to re-use on the subterms, unlike induction. *)

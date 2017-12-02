@@ -4,6 +4,8 @@ Inductive natlist : Type :=
 
 (* natlist is union of nil and cons *)
 
+Definition bag := natlist.
+
 Compute (cons 1 (cons 2 (cons 3 nil))).
 
 Notation "[ ]" := nil.

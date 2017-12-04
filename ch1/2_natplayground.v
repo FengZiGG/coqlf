@@ -46,6 +46,13 @@ Proof.
 reflexivity.
 Qed.
 
+Theorem simple_minmax : forall n m, n <= m -> min n m <= max n m.
+Proof.
+  intros.
+  rewrite min_l.
+  rewrite max_r.
+  assumption. assumption. assumption.
+Qed.
 
 End NatPlayground.
 

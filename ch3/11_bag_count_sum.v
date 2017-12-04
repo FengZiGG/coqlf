@@ -6,7 +6,7 @@ Fixpoint count' (v:nat) (s:bag) : nat :=
   | []        => 0
   | cons x s' => match (Nat.eqb x v) with
                 | true  => 1 + (count' x s') (* this is the only difference with original count. *)
-(* The reason for this change is when we case on Nat.eqb n v in the theorem below, it's easier to prove *)
+(* The reason for this change is when we case on Nat.eqb n v in the theorem below, it's using different tricks to prove *)
                 | false => count' v s'
                 end
   end.
@@ -56,5 +56,15 @@ Proof.
       simpl. rewrite Hn.
       (* Use our fancy lemma just for demo purposes, we can just rewrite H instead *)
       rewrite (some_lemma s1 s2 v n Hn). rewrite IHs1. rewrite H. reflexivity.
+    + (* v != n *) simpl. rewrite Hn. exact IHs1.
+Qed.
+
+Theorem my_cool_theorem_simpl : forall (s1 s2 : bag) (v : nat), count v s1 + count v s2 = count v (sum s1 s2).
+Proof.
+  intros s1 s2 v.
+  induction s1.
+  - (* base *) simpl. reflexivity.
+  - (* i.h. *) case (Nat.eqb n v) eqn:Hn.
+    + (* v == n *) simpl. rewrite Hn. simpl. rewrite IHs1. reflexivity.
     + (* v != n *) simpl. rewrite Hn. exact IHs1.
 Qed.

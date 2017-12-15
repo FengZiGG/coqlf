@@ -36,17 +36,17 @@ Qed.
 Theorem app_assoc : forall A (l m n:list A), l ++ m ++ n = (l ++ m) ++ n.
 Proof.
   intros A l m n.
-  induction n.
-  - (* base *) rewrite app_nil_r. rewrite app_nil_r. reflexivity.
-  - (* i.h. *) simpl.
-Admitted.
+  induction l.
+  - (* base *) simpl. reflexivity.
+  - (* i.h. *) simpl. rewrite IHl. reflexivity.
+Qed.
 
 Search (_ = _ + 0).
 
 Lemma app_length : forall (X:Type) (l1 l2 : list X), length (l1 ++ l2) = length l1 + length l2.
 Proof.
   intros x l1 l2.
-  induction l2.
-  - (* base *) rewrite app_nil_r. simpl. rewrite <- plus_n_O. reflexivity.
-  - (* i.h. *) simpl.
-Admitted.
+  induction l1.
+  - (* base *) simpl. reflexivity.
+  - (* i.h. *) simpl. rewrite <- IHl1. reflexivity.
+Qed.

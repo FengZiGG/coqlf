@@ -72,3 +72,8 @@ Fixpoint list_length' {x : Type} (l : list x) :=
 Check list_length'.
 
 Compute list_length' (cons 1 (cons 2 nil)).
+
+Definition cool_pair {X : Type} (x y : X) := fun a => if (Nat.eqb a 1) then x else y.
+
+Compute ((cool_pair 10 20) 1).
+Compute ((cool_pair 10 20) 2).

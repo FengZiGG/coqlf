@@ -20,4 +20,4 @@ Proof.
   induction l.
   - (* base *) simpl. reflexivity.
   - (* i.h. *) simpl. rewrite rev_app_distr. rewrite IHl. simpl. reflexivity.
-Admitted.
+Qed.

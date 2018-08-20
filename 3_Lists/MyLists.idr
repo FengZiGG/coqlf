@@ -43,3 +43,15 @@ total
 tl' : Natlist -> Natlist
 tl' Nil        = Nil
 tl' (Cons _ x) = x
+
+public export
+total
+app_assoc : (l1, l2, l3 : Natlist) -> (app (app l1 l2) l3) = (app l1 (app l2 l3))
+app_assoc Nil l2 l3          = Refl
+app_assoc (Cons x l1') l2 l3 = let IH = app_assoc l1' l2 l3 in rewrite IH in Refl
+
+public export
+total
+rev : Natlist -> Natlist
+rev Nil         = Nil
+rev (Cons x l') = app (rev l') (Cons x Nil)
